@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shooting Game</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+    <script src="./shoot.js"></script>
+    <script src="./target.js"></script>
+    <script src="./game.js"></script>
+</head>
+
+<body>
+    <a-scene id="scene">
+        <a-assets>
+            <a-asset-item id="shooter" src="./models/shooter/gun.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-entity id="environment" environment="preset: default"></a-entity>
+        <a-entity id="camera-rig" position="0 1 2">
+            <!--Camera and Cursor-->
+            <a-entity id="camera" camera position="0 1.6 0" look-controls="pointerLockEnabled: false">
+                <a-entity id="weapon" gltf-model="#shooter" position="0 -4.4 3" rotation="0 180 0" scale="0.35 1 1"
+                    body="type: static; mass: 5; shape: none;" shape="shape: sphere; radius: 5; offset: 0 3 0;">
+                </a-entity>
+                <a-cursor></a-cursor>
+                <a-entity id="in2" position="1 2 -7.1"
+                    text="font: mozillavr; width:5; height: 5; value: Press 'q' to Shoot the Bullets">
+                </a-entity>
+                <a-entity id="game_over_text" position="1 2 -8"
+                    text="font: mozillavr; align: center; width: 80; color: white;value: Game Over!!!"
+                    visible="false"></a-entity>
+            </a-entity>
+        </a-entity>
+        <a-entity bullets game-play></a-entity>
+
+        <a-entity targets></a-entity>
+    </a-scene>
+</body>
+
+</html>
